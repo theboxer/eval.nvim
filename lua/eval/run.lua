@@ -1,5 +1,5 @@
 local utils = require("eval.utils")
-local config = require("eval.config").options
+local config = require("eval.config")
 
 local lines = {}
 
@@ -25,12 +25,12 @@ local function run(input, lines_)
   local stdout = vim.loop.new_pipe(false)
   local stderr = vim.loop.new_pipe(false)
 
-  if not config.filetype[filetype] then
+  if not config.options.filetype[filetype] then
     print("No setup for filetype " .. filetype .. ".")
     return
   end
 
-  local cmd = config.filetype[filetype].cmd
+  local cmd = config.options.filetype[filetype].cmd
 
   handle, pid =
     vim.loop.spawn(
