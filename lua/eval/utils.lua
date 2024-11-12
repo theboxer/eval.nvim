@@ -1,4 +1,4 @@
-local config = require("eval.config").options
+local config = require("eval.config")
 local eval_ns = vim.api.nvim_create_namespace("eval_ns")
 
 local M = {}
@@ -12,7 +12,7 @@ function M.get_visual_selection()
 end
 
 function M.set_virtual_text(data, pos)
-  vim.api.nvim_buf_set_virtual_text(0, eval_ns, pos, {{config.prefix_char .. data:gsub("\n", ""), "TSComment"}}, {})
+  vim.api.nvim_buf_set_virtual_text(0, eval_ns, pos, {{config.options.prefix_char .. data:gsub("\n", ""), "TSComment"}}, {})
 end
 
 function M.clear_virtual_text()
